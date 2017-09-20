@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 public class test extends Application{
 	StackPane deck = new StackPane();
 	BorderPane borderPane = new BorderPane();
+	int counter =0;
 
 	 
 		
@@ -94,6 +95,7 @@ public class test extends Application{
 		@Override
 		public void handle(ActionEvent event) {
 			deck.getChildren().get(0).toFront();
+			counter++;
 		}
 	}
 	class ExitHandler implements EventHandler<ActionEvent>{
@@ -108,6 +110,7 @@ public class test extends Application{
 		@Override
 		public void handle(ActionEvent event) {
 			deck.getChildren().get(53).toBack();
+			counter--;
 		}
 
 	}
@@ -115,7 +118,17 @@ public class test extends Application{
 		
 		@Override
 		public void handle(ActionEvent event) {
-			borderPane.setCenter(deck);
+			
+			while(counter!=0){
+				if(counter>0){
+				deck.getChildren().get(53).toBack();
+				counter--;
+				}
+				else if(counter<0){
+					deck.getChildren().get(0).toFront();
+					counter++;
+				}
+			}
 		}
 
 	}
